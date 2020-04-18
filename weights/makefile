@@ -9,8 +9,10 @@ clean::
 
 dist_clean::
 	rm -f $(FILES)
-
-
+	
+goodgyal-7.pb.gz:
+	wget -O $@ https://github.com/dkappe/leela-chess-weights/files/3528155/goodgyal-7.pb.gz
+	
 weights_9155.txt.gz:
 	wget -O $@ https://lczero.org/get_network?sha=22ea83dfb2de66573010ad3415ac4fbedab5cd7c0b5453252a51cedeaa47f7e1
 

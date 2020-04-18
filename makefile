@@ -25,7 +25,7 @@ EMMC_MEMORY_FLAGS=\
 #-s TOTAL_MEMORY=268435456 
 
 EMCC=emcc \
--std=gnu++14 \
+-std=gnu++17 \
 -stdlib=libc++ \
 --bind \
 $(EMMC_OPTIM_FLAGS) \
@@ -43,15 +43,15 @@ OBJECTS=$(SOURCES:%.cc=obj/%.o)
 
 EMCC_LC0=$(EMCC) -I src
 
+obj/%.o:: libs/lczero-common/proto/%.proto
+	@mkdir -p obj
+	$(EMCC_LC0) $< -o $@
+
 obj/%.o:: src/utils/%.cc
 	@mkdir -p obj
 	$(EMCC_LC0) $< -o $@
 
 obj/%.o: src/chess/%.cc
-	@mkdir -p obj
-	$(EMCC_LC0) $< -o $@
-
-obj/%.o: src/proto/%.cc
 	@mkdir -p obj
 	$(EMCC_LC0) $< -o $@
 
