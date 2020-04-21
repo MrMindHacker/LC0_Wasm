@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.inc": "cpp"
+    },
+    "python.pythonPath": "/home/ml/anaconda3/bin/python"
+}

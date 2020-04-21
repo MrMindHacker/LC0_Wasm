@@ -25,7 +25,7 @@
   Program grant you additional permission to convey the resulting work.
 */
 
-#include <zlib.h>
+#include "zlib/zlib.h"
 
 #include <fstream>
 

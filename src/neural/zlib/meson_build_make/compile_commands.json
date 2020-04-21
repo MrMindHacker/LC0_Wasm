@@ -1,0 +1,92 @@
+[
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/adler32.c.o' -MF 'z@sha/adler32.c.o.d' -o 'z@sha/adler32.c.o' -c ../adler32.c",
+    "file": "../adler32.c",
+    "output": "z@sha/adler32.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/crc32.c.o' -MF 'z@sha/crc32.c.o.d' -o 'z@sha/crc32.c.o' -c ../crc32.c",
+    "file": "../crc32.c",
+    "output": "z@sha/crc32.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/deflate.c.o' -MF 'z@sha/deflate.c.o.d' -o 'z@sha/deflate.c.o' -c ../deflate.c",
+    "file": "../deflate.c",
+    "output": "z@sha/deflate.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/infback.c.o' -MF 'z@sha/infback.c.o.d' -o 'z@sha/infback.c.o' -c ../infback.c",
+    "file": "../infback.c",
+    "output": "z@sha/infback.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/inffast.c.o' -MF 'z@sha/inffast.c.o.d' -o 'z@sha/inffast.c.o' -c ../inffast.c",
+    "file": "../inffast.c",
+    "output": "z@sha/inffast.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/inflate.c.o' -MF 'z@sha/inflate.c.o.d' -o 'z@sha/inflate.c.o' -c ../inflate.c",
+    "file": "../inflate.c",
+    "output": "z@sha/inflate.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/inftrees.c.o' -MF 'z@sha/inftrees.c.o.d' -o 'z@sha/inftrees.c.o' -c ../inftrees.c",
+    "file": "../inftrees.c",
+    "output": "z@sha/inftrees.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/trees.c.o' -MF 'z@sha/trees.c.o.d' -o 'z@sha/trees.c.o' -c ../trees.c",
+    "file": "../trees.c",
+    "output": "z@sha/trees.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/zutil.c.o' -MF 'z@sha/zutil.c.o.d' -o 'z@sha/zutil.c.o' -c ../zutil.c",
+    "file": "../zutil.c",
+    "output": "z@sha/zutil.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/compress.c.o' -MF 'z@sha/compress.c.o.d' -o 'z@sha/compress.c.o' -c ../compress.c",
+    "file": "../compress.c",
+    "output": "z@sha/compress.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/uncompr.c.o' -MF 'z@sha/uncompr.c.o.d' -o 'z@sha/uncompr.c.o' -c ../uncompr.c",
+    "file": "../uncompr.c",
+    "output": "z@sha/uncompr.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/gzclose.c.o' -MF 'z@sha/gzclose.c.o.d' -o 'z@sha/gzclose.c.o' -c ../gzclose.c",
+    "file": "../gzclose.c",
+    "output": "z@sha/gzclose.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/gzlib.c.o' -MF 'z@sha/gzlib.c.o.d' -o 'z@sha/gzlib.c.o' -c ../gzlib.c",
+    "file": "../gzlib.c",
+    "output": "z@sha/gzlib.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/gzread.c.o' -MF 'z@sha/gzread.c.o.d' -o 'z@sha/gzread.c.o' -c ../gzread.c",
+    "file": "../gzread.c",
+    "output": "z@sha/gzread.c.o"
+  },
+  {
+    "directory": "/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make",
+    "command": "cc -Iz@sha -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -fPIC -Wno-implicit-fallthrough -Wno-implicit-function-declaration -MD -MQ 'z@sha/gzwrite.c.o' -MF 'z@sha/gzwrite.c.o.d' -o 'z@sha/gzwrite.c.o' -c ../gzwrite.c",
+    "file": "../gzwrite.c",
+    "output": "z@sha/gzwrite.c.o"
+  }
+]

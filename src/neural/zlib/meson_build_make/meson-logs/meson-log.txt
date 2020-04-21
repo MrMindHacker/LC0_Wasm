@@ -1,0 +1,97 @@
+Build started at 2020-04-21T17:58:55.534274
+Main binary: /usr/bin/python3
+Build Options: 
+Python system: Linux
+The Meson build system
+Version: 0.54.0
+Source dir: /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11
+Build dir: /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make
+Build type: native build
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+Project name: zlib
+Project version: 1.2.11
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.c -o /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 9.2.1 "cc (Debian 9.2.1-19) 9.2.1 20191109")
+C linker for the build machine: cc ld.bfd 2.33.1
+None of 'AR' are defined in the environment, not changing global flags.
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.c -o /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/sanitycheckc.exe
+C compiler for the host machine: cc (gcc 9.2.1 "cc (Debian 9.2.1-19) 9.2.1 20191109")
+C linker for the host machine: cc ld.bfd 2.33.1
+None of 'AR' are defined in the environment, not changing global flags.
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Running compile:
+Working directory:  /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpwdqpmsro
+Command line:  cc /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpwdqpmsro/testfile.c -o /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpwdqpmsro/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -Wno-implicit-fallthrough -Wimplicit-fallthrough 
+
+Code:
+ int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-implicit-fallthrough -Wimplicit-fallthrough: YES 
+Running compile:
+Working directory:  /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmphjt82y2l
+Command line:  cc /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmphjt82y2l/testfile.c -o /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmphjt82y2l/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -Wno-implicit-function-declaration -Wimplicit-function-declaration 
+
+Code:
+ int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-implicit-function-declaration -Wimplicit-function-declaration: YES 
+Build targets in project: 1
+
+Found ninja-1.10.0 at /usr/bin/ninja
+Running compile:
+Working directory:  /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpnw31mals
+Command line:  cc /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpnw31mals/testfile.c -o /mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make/meson-private/tmpnw31mals/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-linux-gnu/9/
+programs: =/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/9/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/9/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 
+None of 'STRIP' are defined in the environment, not changing global flags.
+None of 'STRIP' are defined in the environment, not changing global flags.

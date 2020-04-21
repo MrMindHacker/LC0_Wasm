@@ -1,0 +1,8 @@
+prefix=/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11/meson_build_make
+srcdir=/mnt/592D2D01503E82C6/Projects/chess/Lc0/zlib-1.2.11
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.11
+Libs: -L${prefix}/ -lz
+Cflags:-I${prefix}/ -I${srcdir}/

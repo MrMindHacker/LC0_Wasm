@@ -1,47 +1,10 @@
-# This file is part of Leela Chess Zero.
-# Copyright (C) 2018-2020 The LCZero Authors
-#
-# Leela Chess is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Leela Chess is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Leela Chess.  If not, see <http://www.gnu.org/licenses/>.
-
 project('lc0', 'cpp',
         default_options : ['cpp_std=c++17', 'b_ndebug=if-release', 'warning_level=3'],
         meson_version: '>=0.52')
 
-cc = meson.get_compiler('cpp')
 
-if not cc.has_header('optional') or not cc.has_header('string_view') or not cc.has_header('charconv')
-    error('Lc0 requires a compiler supporting C++17, for example g++ v8.0, ' +
-          'clang v5.0 or later (with C++17 stdlib) and Visual Studio 2017 or ' +
-          'later.')
-endif
 
-if cc.get_id() == 'clang'
-  # Thread safety annotation
-  add_project_arguments('-Wthread-safety', language : 'cpp')
-endif
-if cc.get_id() == 'clang' or cc.get_id() == 'gcc'
-  if get_option('buildtype') == 'release'
-    add_project_arguments(cc.get_supported_arguments(['-march=native']), language : 'cpp')
-  endif
-endif
-if cc.get_id() == 'msvc'
-  # Silence some zlib warnings.
-  add_global_arguments('/wd4131', '/wd4267', '/wd4127', '/wd4244', '/wd4245', language : 'c')
-endif
-if host_machine.system() == 'windows'
-  add_project_arguments('-DNOMINMAX', language : 'cpp')
-endif
+cc = meson.get_compiler('emscription')
 
 # Files to compile.
 deps = []
@@ -157,19 +120,6 @@ includes += include_directories('src')
 
 deps += dependency('threads')
 
-#############################################################################
-## Platform specific files
-############################################################################
-if host_machine.system() == 'windows'
-  files += 'src/utils/filesystem.win32.cc'
-else
-  files += 'src/utils/filesystem.posix.cc'
-endif
-
-#############################################################################
-## BACKENDS
-#############################################################################
-
 if get_option('build_backends')
   ## ~~~~~~~~~~
   ## Tensorflow
@@ -247,40 +197,6 @@ if get_option('build_backends')
 
     deps += subproject('eigen').get_variable('eigen_dep')
 
-    ispc = find_program('ispc', required: false)
-    ispc_extra_args = []
-    if get_option('ispc') and ispc.found()
-      ispc_native_only = get_option('ispc_native_only')
-      if host_machine.system() == 'windows'
-        outputnames = [ '@BASENAME@.obj']
-        if not ispc_native_only
-          outputnames += ['@BASENAME@_sse2.obj', '@BASENAME@_sse4.obj',
-                          '@BASENAME@_avx.obj', '@BASENAME@_avx11.obj',
-                          '@BASENAME@_avx2.obj' ]
-        endif
-      else
-        ispc_extra_args += ['--pic']
-        outputnames = [ '@BASENAME@.o']
-        if not ispc_native_only
-          outputnames += ['@BASENAME@_sse2.o', '@BASENAME@_sse4.o', 
-                           '@BASENAME@_avx.o', '@BASENAME@_avx11.o',
-                           '@BASENAME@_avx2.o' ]
-        endif
-      endif
-      if ispc_native_only
-        ispc_target = 'host'
-      else
-        ispc_target = 'sse2-i32x8,sse4-i32x8,avx1-i32x8,avx1.1-i32x8,avx2-i32x8'
-      endif
-      iscp_gen = generator(ispc,
-        output: [ '@BASENAME@_ispc.h', outputnames ],
-        arguments: [ '-O2', '--wno-perf', '--arch=x86-64',
-                     '--target=' + ispc_target,
-                     '@INPUT@', '-o', '@OUTPUT1@' ,'-h', '@OUTPUT0@' ]
-                     + ispc_extra_args
-      )
-    endif
-
     blas_files = [
     'src/neural/blas/convolution1.cc',
     'src/neural/blas/fully_connected_layer.cc',
@@ -297,19 +213,7 @@ if get_option('build_backends')
     files += blas_files
     has_backends = true
 
-    if get_option('ispc') and ispc.found()
-      files += iscp_gen.process('src/neural/blas/winograd_transform.ispc')
-      add_project_arguments('-DUSE_ISPC', language : 'cpp')
-    endif
-
-  endif
-
-
-  ## ~~~~~
-  ## OpenCL
-  ## ~~~~~
-
-  has_opencl = false
+    has_opencl = false
 
   opencl_libdirs = get_option('opencl_libdirs')
   opencl_lib=cc.find_library('OpenCL', dirs: opencl_libdirs, required: false)
@@ -349,106 +253,7 @@ if get_option('build_backends')
   endif
 
   files += shared_files
-
-  ## ~~~~~
-  ## cuDNN
-  ## ~~~~~
-  cudnn_libdirs = get_option('cudnn_libdirs')
-  cu_blas = cc.find_library('cublas', dirs: cudnn_libdirs, required: false)
-  cu_dnn = cc.find_library('cudnn', dirs: cudnn_libdirs, required: false)
-  cu_dart = cc.find_library('cudart', dirs: cudnn_libdirs, required: false)
-  nvcc = find_program('nvcc', '/usr/local/cuda/bin/nvcc', '/opt/cuda/bin/nvcc',
-                      required: false)
-
-  #.cc files
-  cuda_files = [
-    'src/neural/cuda/network_cudnn.cc',
-	'src/neural/cuda/layers.cc',
-  ]
-
-  # .cu files compiled without any specific sm version
-  cuda_files_nvcc_common = [
-    'src/neural/cuda/common_kernels.cu',
-  ]
-
-  # .cu files compiled with sm_70 (volta+). Only used by cudnn-fp16
-  cuda_files_nvcc_fp16 = [
-    'src/neural/cuda/fp16_kernels.cu',
-  ]
-
-  if get_option('cudnn') and cu_blas.found() and cu_dnn.found() and cu_dart.found() and nvcc.found()
-    deps += [cu_blas, cu_dnn, cu_dart]
-    foreach d : get_option('cudnn_include')
-      if run_command('scripts/checkdir.py', d).returncode() == 0
-        includes += include_directories(d)
-      endif
-    endforeach
-    includes += include_directories('src/neural/cuda/')
-
-    cuda_arguments = ['@EXTRA_ARGS@', '-c', '@INPUT@', '-o', '@OUTPUT@',
-                      '-I', meson.current_source_dir() + '/src']
-    if host_machine.system() == 'windows'
-      # meson bug fixed in v0.51
-      if meson.version().version_compare('<0.51') or get_option('default_library') != 'static'
-        cuda_arguments += ['-Xcompiler', '-MD']
-      else
-        cuda_arguments += ['-Xcompiler', '-MT']
-      endif
-    else
-      cuda_arguments += ['--std=c++14', '-Xcompiler', '-fPIC']
-    endif
-    foreach x : get_option('cudnn_include')
-      cuda_arguments += ['-I', x]
-    endforeach
-    if host_machine.system() == 'windows'
-      outputname = '@BASENAME@.obj'
-    else
-      outputname = '@BASENAME@.o'
-    endif
-    cuda_gen = generator(nvcc,
-        output: outputname,
-        arguments: cuda_arguments,
-      )
-	 files += cuda_files
-    files += cuda_gen.process(cuda_files_nvcc_common)
-    files += cuda_gen.process(cuda_files_nvcc_fp16, extra_args: ['-arch=compute_70', '-code=sm_70'])
-    has_backends = true
-  endif
   
-  ## ~~~~~~~~
-  ## DirectX
-  ## ~~~~~~~~
-  
-  # we should always be able to build DirectX12 backend on windows platform  
-  if host_machine.system() == 'windows' and get_option('dx')
-    dx_d3d12 = cc.find_library('d3d12')
-    dx_dxgi = cc.find_library('dxgi')
-  
-    dx_files = [
-      'src/neural/dx/network_dx.cc',
-      'src/neural/dx/shader_wrapper.cc',
-      'src/neural/dx/layers_dx.cc',
-      'src/neural/dx/fp16_utils.cc',
-    ]
-    files += dx_files
-    deps += [dx_d3d12, dx_dxgi]
-
-    subdir('src/neural/dx/shaders')
-
-    has_backends = true
-  endif  
- 
-
-endif # if get_option('build_backends')
-
-if not has_backends and get_option('build_backends')
-  error('''
-
-        No usable computation backends (cudnn/opencl/blas/etc) enabled.
-        If you want to build with the random backend only, add
-        -Dbuild_backends=false to the build command line.''')
-endif
-
 
 #############################################################################
 ## Dependencies
@@ -467,63 +272,5 @@ endif
     deps += cc.find_library('libprofiler',
       dirs: ['/usr/local/lib'], required: false)
   endif
-
-
-#############################################################################
-## Main Executable
-#############################################################################
-
-if not get_option('popcnt')
-  add_project_arguments('-DNO_POPCNT', language : 'cpp')
-endif
-
-if not get_option('pext')
-  add_project_arguments('-DNO_PEXT', language : 'cpp')
-endif
-
-if get_option('embed')
-  add_project_arguments('-DEMBED', language : 'cpp')
-endif
-
-executable('lc0', 'src/main.cc',
-  files, include_directories: includes, dependencies: deps, install: true)
-
-
-### Tests
-
-if get_option('gtest')
-  gtest = dependency('gtest', fallback: ['gtest', 'gtest_dep'])
-  lc0_lib = library('lc0_lib', files, include_directories: includes, dependencies: deps)
-
-  test('ChessBoard',
-    executable('chessboard_test', 'src/chess/board_test.cc',
-    include_directories: includes, link_with: lc0_lib, dependencies: gtest
-  ), args: '--gtest_output=xml:chessboard.xml', timeout: 90)
-
-  test('HashCat',
-    executable('hashcat_test', 'src/utils/hashcat_test.cc',
-    include_directories: includes, link_with: lc0_lib, dependencies: gtest
-  ), args: '--gtest_output=xml:hashcat.xml', timeout: 90)
-
-  test('PositionTest',
-    executable('position_test', 'src/chess/position_test.cc',
-    include_directories: includes, link_with: lc0_lib, dependencies: gtest
-  ), args: '--gtest_output=xml:position.xml', timeout: 90)
-
-  test('OptionsParserTest',
-    executable('optionsparser_test', 'src/utils/optionsparser_test.cc',
-    include_directories: includes, link_with: lc0_lib, dependencies: gtest
-  ), args: '--gtest_output=xml:optionsparser.xml', timeout: 90)
-
-  test('SyzygyTest',
-    executable('syzygy_test', 'src/syzygy/syzygy_test.cc',
-    include_directories: includes, link_with: lc0_lib, dependencies: gtest
-  ), args: '--gtest_output=xml:syzygy.xml', timeout: 90)
-
-  test('EncodePositionForNN', 
-    executable('encoder_test', 'src/neural/encoder_test.cc', pb_files,
-    include_directories: includes, link_with: lc0_lib,
-    dependencies: [gtest]
-  ), args: '--gtest_output=xml:encoder.xml', timeout: 90)
-
-endif
+  endif
+  endif

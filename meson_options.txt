@@ -53,6 +53,11 @@ option('blas',
        value: true,
        description: 'Enable BLAS backend')
 
+option('wasm',
+       type: 'boolean',
+       value: true,
+       description: 'Enable BLAS backend')
+
 option('ispc',
        type: 'boolean',
        value: true,
@@ -65,17 +70,17 @@ option('ispc_native_only',
 
 option('cudnn',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable cuDNN backend')
 
 option('opencl',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable OpenCL backend')
 
 option('dx',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable DirectX12 backend')
 
 option('tensorflow',
